@@ -1,0 +1,20 @@
+package br.com.nat.forumhub.domain.usuario;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public record UsuarioRegistro(
+        @NotBlank(message = "O campo nome é obrigatório.")
+        String nome,
+        @NotBlank(message = "O campo e-mail é obrigatório.")
+        @Email(message = "Digite um e-mail válido.")
+        String email,
+        @NotBlank(message = "O campo senha é obrigatório.")
+        @Size(min = 6, message = "Digite uma senha valida, com no mínimo 6 caracteres.")
+        String senha,
+        @NotNull(message = "O campo perfil é obrigatório.")
+        Perfil perfil
+) {
+}
