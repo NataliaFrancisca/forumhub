@@ -37,7 +37,6 @@ public class TratamentoExcecao {
         return ResponseEntity.notFound().build();
     }
 
-
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity tratarErroBadCredentials() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
@@ -50,12 +49,12 @@ public class TratamentoExcecao {
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity tratarErroAcessoNegado(Exception ex) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado: " + ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado: " + ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity tratarErro500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getMessage());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
