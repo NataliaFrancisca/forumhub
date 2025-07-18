@@ -43,7 +43,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             response.getWriter().write(
                     """
                        {
-                        "erro": "Token JWT inválido ou expirado. Por favor, faça login novamente."
+                        "erro": "Token JWT invalido ou expirado. Por favor, faça login novamente."
                        }
                     """
             );
