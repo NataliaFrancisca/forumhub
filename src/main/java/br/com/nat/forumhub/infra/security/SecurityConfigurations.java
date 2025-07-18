@@ -29,6 +29,14 @@ public class SecurityConfigurations {
             .authorizeHttpRequests(auth -> {
                         auth.requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll();
                         auth.requestMatchers("/usuarios/**").authenticated();
+
+                        auth.requestMatchers(HttpMethod.POST, "/cursos").hasRole("PROFESSOR");
+                        auth.requestMatchers(HttpMethod.PUT, "/cursos").hasRole("PROFESSOR");
+                        auth.requestMatchers(HttpMethod.DELETE, "/cursos").hasRole("PROFESSOR");
+
+                        auth.requestMatchers(HttpMethod.POST, "/topicos").hasRole("ALUNO");
+                        auth.requestMatchers(HttpMethod.PUT, "/topicos").hasRole("ALUNO");
+
                         auth.anyRequest().authenticated();
             })
             .addFilterBefore(this.securityFilter, UsernamePasswordAuthenticationFilter.class)
