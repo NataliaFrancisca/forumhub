@@ -19,8 +19,11 @@ public class Resposta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(nullable = false)
     String mensagem;
+    @Column(nullable = false)
     String solucao;
+    @Column(nullable = false)
     LocalDateTime dataCriacao;
 
     @ManyToOne
@@ -30,4 +33,24 @@ public class Resposta {
     @ManyToOne
     // um topico pode estar em muitas respostas
     Topico topico;
+
+    public Resposta(RespostaRegistro resposta) {
+        this.mensagem = resposta.mensagem();
+        this.solucao = resposta.solucao();
+        this.dataCriacao = LocalDateTime.now();
+    }
+
+    public void atualizar(RespostaAtualizada resposta) {
+        if (resposta.mensagem() != null){
+            if (!resposta.mensagem().isEmpty()){
+                this.mensagem = resposta.mensagem();
+            }
+        }
+
+        if (resposta.solucao() != null){
+            if (!resposta.solucao().isEmpty()){
+                this.solucao = resposta.solucao();
+            }
+        }
+    }
 }
