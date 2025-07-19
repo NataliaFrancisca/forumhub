@@ -1,6 +1,6 @@
 package br.com.nat.forumhub.domain.topico;
 
-import br.com.nat.forumhub.domain.resposta.Resposta;
+import br.com.nat.forumhub.domain.resposta.RespostaDadosDetalhados;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +13,7 @@ public record TopicoDadosDetalhadosComRespostas(
         Status status,
         String autor,
         String curso,
-        List<Resposta> respostas
+        List<RespostaDadosDetalhados> respostas
 ) {
     public TopicoDadosDetalhadosComRespostas(Topico topico){
         this(
@@ -24,7 +24,7 @@ public record TopicoDadosDetalhadosComRespostas(
                 topico.getStatus(),
                 topico.getAutor().getNome(),
                 topico.getCurso().getNome(),
-                topico.getRespostas()
+                topico.getRespostas().stream().map(RespostaDadosDetalhados::new).toList()
         );
     }
 }
