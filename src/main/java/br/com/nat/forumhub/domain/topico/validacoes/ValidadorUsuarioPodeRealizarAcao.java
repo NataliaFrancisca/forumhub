@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-@Component
+@Component("validadorUsuarioPodeRealizarAcaoTopico")
 public class ValidadorUsuarioPodeRealizarAcao {
     public void validar(Topico topico, Usuario usuario){
         boolean possuiPerfilProfessorOuModerador = usuario.getAuthorities()
